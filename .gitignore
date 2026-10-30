@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Resume source (contains private contact details)
+*.pdf

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moat Finder · Idris Ayinde</title>
+  <meta name="description" content="Moat Finder screens the S&P 500 and TSX against Warren Buffett's investing principles and explains every pick in plain English.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232f5d50'/><text x='50' y='67' font-family='Georgia,serif' font-size='52' text-anchor='middle' fill='%23fbf9f4'>IA</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="name" href="index.html">Idris Ayinde</a>
+      <nav>
+        <a href="moat-finder.html" aria-current="page">Moat Finder</a>
+        <a href="experience.html">Experience</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <h1>Moat Finder</h1>
+      <div class="article-meta">
+        A Buffett-style stock screener for the USA and Canada · In progress ·
+        <a href="https://github.com/Idris-Ayinde/moat-finder">Source on GitHub</a>
+      </div>
+
+      <p>
+        Warren Buffett's approach to picking stocks is easy to say and hard to
+        do at scale. He looks for businesses with a durable competitive
+        advantage, a conservative balance sheet, pricing power, and predictable
+        earnings, and he buys them only when the price leaves a margin of
+        safety. Moat Finder applies those rules to every company in the
+        <strong>S&amp;P 500</strong> and the <strong>S&amp;P/TSX
+        Composite</strong>. It scores each one from 0 to 100 and shows the
+        <strong>top 10 in each sector for each country</strong>.
+      </p>
+      <p>
+        I wanted a screener that explains its picks instead of just ranking
+        them. Each pick has a "See why" view that says in plain English which of
+        Buffett's rules the company meets and which it misses. The view also
+        shows up to ten years of financial history and how the estimated value
+        was calculated.
+      </p>
+
+      <h2>What it does</h2>
+      <ul>
+        <li><strong>Dashboard.</strong> Each pick is shown as a card with a score badge, the price next to the estimated value, a cheap/fair/expensive label, and key ratios. A sortable table view is also available.</li>
+        <li><strong>Detail view.</strong> Shows the reasoning behind each score, the financial history, the valuation, and links to Yahoo Finance, Google Finance, and SEC filings.</li>
+        <li><strong>Ask Moat Finder.</strong> A built-in chat assistant that runs on rules, with no AI model or API keys. It recognizes tickers and company names and handles questions like "Compare AAPL and MSFT," "Top 5 cheap tech stocks in the USA," "Low debt utilities," or "What is ROE?". It answers from the screen results.</li>
+        <li><strong>Guide.</strong> Explains every term used in the app. The same glossary feeds the tooltips and the chat.</li>
+        <li><strong>Light and dark themes.</strong> The theme follows your system setting, and a switch lets you override it.</li>
+      </ul>
+
+      <h2>How a stock is scored</h2>
+      <table>
+        <thead>
+          <tr><th>Principle</th><th>Criterion</th><th class="num">Weight</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Durable advantage</td><td>Average ROE ≥ 15%, and ≥ 15% consistently</td><td class="num">12 + 8</td></tr>
+          <tr><td>Conservative balance sheet</td><td>Debt/equity ≤ 0.5 (≤ 1.0 for utilities and real estate; ROA for financials)</td><td class="num">15</td></tr>
+          <tr><td>Pricing power</td><td>Net margin ≥ 15% (3-year average)</td><td class="num">14</td></tr>
+          <tr><td>Predictable earnings</td><td>Profitable every year, growing, few down years</td><td class="num">6 + 5 + 4</td></tr>
+          <tr><td>Owner earnings</td><td>Positive and growing free cash flow</td><td class="num">6 + 5</td></tr>
+          <tr><td>Margin of safety</td><td>Price vs. DCF intrinsic value, P/E</td><td class="num">17 + 8</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Intrinsic value comes from a 10-year discounted cash flow model. It
+        starts from three-year average free cash flow (net income for
+        financials). That figure grows at the lower of historical earnings
+        growth and FCF growth, capped at 12%, then fades to 2.5% and is
+        discounted at 10%. If data for a criterion is missing, the criterion is
+        skipped and the other weights are rescaled. A stock needs at least
+        three years of history and 60% data coverage to be ranked.
+      </p>
+
+      <h2>Where the data comes from</h2>
+      <p>
+        No single free source is complete or always right, so Moat Finder
+        combines several. Prices and P/E ratios use the <em>median</em> across
+        sources, and any disagreements between them appear as warnings on the
+        stock.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>Used for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Yahoo Finance</td><td>Quotes, ratios, about 4 years of statements</td></tr>
+          <tr><td>SEC EDGAR</td><td>10+ years of official 10-K figures via the XBRL API (US)</td></tr>
+          <tr><td>Google Finance</td><td>Price and P/E cross-check</td></tr>
+          <tr><td>Finviz</td><td>Price, P/E, ROE, D/E, and margin cross-check (US)</td></tr>
+          <tr><td>Financial Modeling Prep</td><td>Fills gaps in history, mostly for Canada (optional)</td></tr>
+          <tr><td>Wikipedia</td><td>Index constituents and GICS sectors</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Responses are cached locally, with quotes kept for a day and
+        fundamentals for a week. Requests are rate-limited so each site isn't
+        overloaded. A full first run takes about 10 to 20 minutes, and later
+        runs are fast. The screen can be refreshed from the dashboard or from
+        the command line (<code>python -m buffett</code>), which makes it easy
+        to schedule with cron.
+      </p>
+
+      <h2>Built with</h2>
+      <p>Python, Streamlit, pandas, yfinance, SEC EDGAR XBRL, pytest.</p>
+
+      <p style="margin-top: 32px;">
+        <a href="https://github.com/Idris-Ayinde/moat-finder">View the code on GitHub →</a>
+      </p>
+    </main>
+
+    <footer>© 2026 Idris Ayinde · <a href="index.html">Home</a></footer>
+  </div>
+</body>
+</html>
