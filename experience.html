@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-en="Experience · Idris Ayinde" data-title-fr="Expérience · Idris Ayinde">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,7 @@
   <meta name="description" content="Experience, education, and skills of Idris Ayinde, data engineer.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232f5d50'/><text x='50' y='67' font-family='Georgia,serif' font-size='52' text-anchor='middle' fill='%23fbf9f4'>IA</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <script src="lang.js"></script>
 </head>
 <body>
   <div class="page">
@@ -14,11 +15,14 @@
       <a class="name" href="index.html">Idris Ayinde</a>
       <nav>
         <a href="moat-finder.html">Moat Finder</a>
-        <a href="experience.html" aria-current="page">Experience</a>
+        <a href="experience.html" aria-current="page"><span data-lang="en">Experience</span><span data-lang="fr">Expérience</span></a>
+        <button class="lang-toggle" type="button" hidden>FR</button>
       </nav>
     </header>
 
     <main class="article">
+      <!-- English -->
+      <div data-lang="en">
       <h1>Experience</h1>
       <div class="article-meta">Data engineering, automation, and observability</div>
 
@@ -28,7 +32,7 @@
         <ul>
           <li>Built and maintained more than 50 production data pipelines across Red Hat OpenShift, Linux, and VM environments. The pipelines brought REST API, XML, and other enterprise data into Snowflake and other data warehouses for analytics and reporting.</li>
           <li>Led the design of data architectures that combined data from multiple environments for analysts and data scientists. This included Apache Airflow DAGs that stream API data into Elasticsearch for real-time analytics.</li>
-          <li>Designed and built <strong>GAIA</strong>, an SRE automation platform. It automated Windows system remediation, IIS certificate renewals, and service account password rotations, which reduced manual SRE work by more than 40% and lowered operating costs for several teams.</li>
+          <li>Contributed to the design and development of <strong>GAIA</strong>, an SRE automation platform. It automated Windows system remediation, IIS certificate renewals, and service account password rotations, which reduced manual SRE work by more than 40% and lowered operating costs for several teams.</li>
           <li>Developed, tested, and deployed production automation with Python, Ansible, GitHub Actions, CI/CD, Kubernetes, and OpenShift. Deployments became 25% faster and configuration drift went down.</li>
           <li>Led data engineering projects with ambiguous requirements alongside business and technology stakeholders from several teams. I made technical decisions that fit the organization's strategy and compliance standards.</li>
           <li>Diagnosed and fixed pipeline issues on my own and advised the team on new technologies and best practices.</li>
@@ -85,9 +89,80 @@
         <dt>Tools &amp; methods</dt>
         <dd>MySQL, Tableau, Jira, Confluence, Agile/Scrum</dd>
       </dl>
+      </div>
+
+      <!-- Français -->
+      <div data-lang="fr">
+      <h1>Expérience</h1>
+      <div class="article-meta">Ingénierie des données, automatisation et observabilité</div>
+
+      <div class="role">
+        <h3>Ingénieur de données principal</h3>
+        <span class="entry-meta">Banque Royale du Canada · mai 2024 – nov. 2025</span>
+        <ul>
+          <li>Création et maintenance de plus de 50 pipelines de données en production dans des environnements Red Hat OpenShift, Linux et machines virtuelles. Ces pipelines intégraient des données d'API REST, XML et d'autres sources d'entreprise dans Snowflake et d'autres entrepôts de données pour l'analytique et la production de rapports.</li>
+          <li>Direction de la conception d'architectures de données réunissant des données de plusieurs environnements pour les analystes et les scientifiques des données, notamment des DAG Apache Airflow qui transmettent en continu des données d'API vers Elasticsearch pour l'analytique en temps réel.</li>
+          <li>Contribution à la conception et au développement de <strong>GAIA</strong>, une plateforme d'automatisation SRE qui automatise la remédiation des systèmes Windows, le renouvellement des certificats IIS et la rotation des mots de passe des comptes de service. Résultat : plus de 40 % de travail SRE manuel en moins et des coûts d'exploitation réduits pour plusieurs équipes.</li>
+          <li>Développement, test et déploiement d'automatisations en production avec Python, Ansible, GitHub Actions, CI/CD, Kubernetes et OpenShift, accélérant les déploiements de 25 % et réduisant la dérive de configuration.</li>
+          <li>Direction de projets d'ingénierie des données aux exigences ambiguës avec des parties prenantes d'affaires et technologiques de plusieurs équipes, et prise de décisions techniques alignées sur la stratégie de l'organisation et les normes de conformité.</li>
+          <li>Diagnostic et résolution autonomes des problèmes de pipelines, et conseils à l'équipe sur les nouvelles technologies et les bonnes pratiques.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <h3>Stagiaire en ingénierie des données</h3>
+        <span class="entry-meta">Banque Royale du Canada · janv. 2023 – août 2023</span>
+        <ul>
+          <li>Conception et maintenance de pipelines ETL basés sur des API et Logstash, traitant plus de 50 000 événements par jour et améliorant la fiabilité de l'ingestion des données.</li>
+          <li>Intégration de Kafka au pipeline pour maintenir le flux de données pendant les pannes de Logstash, ce qui a évité toute perte de données lors de ces pannes.</li>
+          <li>Création de tableaux de bord Kibana et amélioration des pipelines de journalisation et de surveillance afin de fournir aux parties prenantes de l'information opérationnelle en temps réel, réduisant le temps consacré aux rapports.</li>
+          <li>Création de tableaux de bord Dynatrace qui suivent les principaux SLI par rapport aux SLO, améliorant la fiabilité et la détection proactive des problèmes.</li>
+          <li>Création, gestion et résolution d'incidents de plateforme dans ServiceNow.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <h3>Stagiaire analyste en systèmes techniques</h3>
+        <span class="entry-meta">Banque Royale du Canada · mai 2022 – déc. 2022</span>
+        <ul>
+          <li>Gestion de la migration de 1 500 écrans d'affichage numérique surveillés par Cineplex Digital Media vers un serveur Samsung MagicINFO, permettant des économies de 150 000 $ et réduisant le volume de données à gérer.</li>
+          <li>Rédaction de documents de conception technique pour MagicINFO, réduisant de plus de 2 heures par jour le temps d'attente au centre de services.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <h3>Animateur bénévole, camp de codage Building Digital Literacy</h3>
+        <span class="entry-meta">Banque Royale du Canada · Bénévolat · 2022</span>
+        <ul>
+          <li>Accompagnement d'élèves de niveau intermédiaire dans des exercices pratiques de programmation et les concepts fondamentaux, aide au débogage et à la réalisation de leurs projets, et vulgarisation des notions techniques pour les débutants.</li>
+        </ul>
+      </div>
+
+      <h2>Formation</h2>
+      <div class="role">
+        <h3>Toronto Metropolitan University</h3>
+        <span class="entry-meta">B.Sc. en informatique · mai 2024 · Moyenne 3,87/4,33 · Liste d'honneur du doyen</span>
+      </div>
+
+      <h2>Compétences</h2>
+      <dl class="skills">
+        <dt>Langages</dt>
+        <dd>Python, Java, C, SQL</dd>
+        <dt>Ingénierie des données</dt>
+        <dd>Pipelines ETL/ELT, Snowflake, entreposage de données, architecture de données, intégration de données, Apache Airflow, Kafka, Logstash, Elasticsearch, API REST, XML, diffusion de données en continu, surveillance des données</dd>
+        <dt>Infonuagique et DevOps</dt>
+        <dd>Red Hat OpenShift, Kubernetes, Docker, Ansible, GitHub Actions, CI/CD, Linux/Unix, machines virtuelles</dd>
+        <dt>Observabilité et exploitation</dt>
+        <dd>Kibana, Grafana, Dynatrace, surveillance des SLI/SLO, ServiceNow</dd>
+        <dt>Science des données et apprentissage automatique</dt>
+        <dd>pandas, NumPy, scikit-learn, partitionnement (clustering), arbres de décision, régression, SVM, forêts aléatoires, analyse d'associations, détection d'anomalies</dd>
+        <dt>Outils et méthodes</dt>
+        <dd>MySQL, Tableau, Jira, Confluence, Agile/Scrum</dd>
+      </dl>
+      </div>
     </main>
 
-    <footer>© 2026 Idris Ayinde · <a href="index.html">Home</a></footer>
+    <footer>© 2026 Idris Ayinde · <a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></footer>
   </div>
 </body>
 </html>

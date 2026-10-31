@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-en="Idris Ayinde" data-title-fr="Idris Ayinde">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,7 @@
   <meta name="description" content="Idris Ayinde is a data engineer who builds data pipelines, automation platforms, and independent projects like Moat Finder.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232f5d50'/><text x='50' y='67' font-family='Georgia,serif' font-size='52' text-anchor='middle' fill='%23fbf9f4'>IA</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <script src="lang.js"></script>
 </head>
 <body>
   <div class="page">
@@ -14,99 +15,235 @@
       <a class="name" href="index.html">Idris Ayinde</a>
       <nav>
         <a href="moat-finder.html">Moat Finder</a>
-        <a href="experience.html">Experience</a>
+        <a href="experience.html"><span data-lang="en">Experience</span><span data-lang="fr">Expérience</span></a>
+        <button class="lang-toggle" type="button" hidden>FR</button>
       </nav>
     </header>
 
     <main>
       <p class="status">
         <span class="status-dot" aria-hidden="true"></span>
-        <span><strong>Status:</strong> <span lang="fr">en train de jouer avec les LLM et les réseaux de neurones artificiels</span><span class="cursor" aria-hidden="true">▍</span></span>
+        <span><strong><span data-lang="en">Status:</span><span data-lang="fr">Statut&nbsp;:</span></strong> <span id="status-text" lang="fr">en train de jouer avec les LLM et les réseaux de neurones artificiels</span><span class="cursor" aria-hidden="true">▍</span></span>
       </p>
 
-      <section class="bio">
-        <p>
-          I'm a data engineer. Until 2025 I was a Senior Data Engineer at Royal
-          Bank of Canada, where I built scalable data pipelines feeding Grafana
-          and Elasticsearch, and designed GAIA, an SRE automation platform that
-          significantly reduced manual operational work across teams. Now I'm focused
-          on building LLM-powered applications and deepening my understanding of
-          neural networks and large language models.
-        </p>
-        <details>
-          <summary>More</summary>
+      <!-- English -->
+      <div data-lang="en">
+        <section class="bio">
           <p>
-            At RBC I architected Airflow pipelines that stream data into
-            Elasticsearch for real-time analytics, and hardened a high-volume
-            event pipeline with Kafka so outages no longer meant lost data.
+            I'm a data engineer with a background in building scalable data
+            platforms at Royal Bank of Canada. As a Senior Data Engineer there, I
+            developed pipelines feeding Grafana and Elasticsearch, and contributed to
+            the design and development of GAIA, an SRE automation platform that
+            significantly reduced manual operational work across teams. Now I'm focused
+            on building LLM-powered applications and deepening my understanding of
+            neural networks and large language models.
           </p>
+          <details>
+            <summary>More</summary>
+            <p>
+              At RBC I architected Airflow pipelines that stream data into
+              Elasticsearch for real-time analytics, and hardened a high-volume
+              event pipeline with Kafka so outages no longer meant lost data.
+            </p>
+            <p>
+              I studied Computer Science at Toronto Metropolitan University
+              (B.Sc. 2024, Dean's List).
+            </p>
+          </details>
+        </section>
+
+        <section>
+          <h2>Projects</h2>
+          <ul class="entries">
+            <li>
+              <a class="entry-title" href="moat-finder.html">Moat Finder: a Buffett-style stock screener</a><span class="tag">In progress</span>
+              <span class="entry-desc">Screens the S&amp;P 500 and S&amp;P/TSX Composite and scores each stock against Buffett's principles. It shows the top 10 per sector with plain-English explanations.</span>
+              <span class="entry-meta">Python · Streamlit · SEC EDGAR · <a href="https://github.com/Idris-Ayinde/moat-finder">GitHub</a></span>
+            </li>
+            <li>
+              <span class="entry-title">GAIA: SRE automation platform</span>
+              <span class="entry-desc">Contributed to the design and development of this platform at RBC. It automates Windows system remediation, IIS certificate renewals, and service account password rotations, substantially reducing manual SRE workload across teams.</span>
+              <span class="entry-meta">Royal Bank of Canada · 2024–2025</span>
+            </li>
+            <li>
+              <span class="entry-title">Medical records analysis: clustering and association rule mining</span>
+              <span class="entry-desc">Used Apriori and K-means on large medical record datasets. The analysis found a clear relationship between patient age and cholesterol levels.</span>
+              <span class="entry-meta">Python · 2022</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Experience</h2>
+          <ul class="entries">
+            <li>
+              <span class="entry-title">Senior Data Engineer, Royal Bank of Canada</span>
+              <span class="entry-meta">May 2024 – Nov. 2025</span>
+            </li>
+            <li>
+              <span class="entry-title">Data Engineer Intern, Royal Bank of Canada</span>
+              <span class="entry-meta">Jan. 2023 – Aug. 2023</span>
+            </li>
+            <li>
+              <span class="entry-title">Technical Systems Analyst Intern, Royal Bank of Canada</span>
+              <span class="entry-meta">May 2022 – Dec. 2022</span>
+            </li>
+          </ul>
+          <p style="margin-top: 20px;"><a href="experience.html">Full experience and skills →</a></p>
+        </section>
+
+        <section>
+          <h2>Education</h2>
+          <ul class="entries">
+            <li>
+              <span class="entry-title">B.Sc. Computer Science, Toronto Metropolitan University</span>
+              <span class="entry-meta">2024 · GPA 3.87/4.33 · Dean's List</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Elsewhere</h2>
+          <ul class="links">
+            <li><a href="https://github.com/Idris-Ayinde">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/ru-idris-ayinde/">LinkedIn</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Français -->
+      <div data-lang="fr">
+        <section class="bio">
           <p>
-            I studied Computer Science at Toronto Metropolitan University
-            (B.Sc. 2024, Dean's List).
+            Je suis ingénieur de données, avec une expérience dans la création de
+            plateformes de données évolutives à la Banque Royale du Canada. En tant
+            qu'ingénieur de données principal, j'y ai développé des pipelines
+            alimentant Grafana et Elasticsearch. J'ai aussi contribué à la
+            conception et au développement de GAIA, une plateforme
+            d'automatisation SRE qui a considérablement réduit le travail
+            opérationnel manuel de plusieurs équipes. Aujourd'hui, je me consacre au développement d'applications
+            propulsées par les LLM et à l'approfondissement de ma compréhension
+            des réseaux de neurones et des grands modèles de langage.
           </p>
-        </details>
-      </section>
+          <details>
+            <summary>Plus</summary>
+            <p>
+              Chez RBC, j'ai conçu l'architecture de pipelines Airflow qui
+              diffusent des données en continu vers Elasticsearch pour l'analytique
+              en temps réel, et j'ai renforcé un pipeline d'événements à haut
+              volume avec Kafka afin que les pannes n'entraînent plus de perte de
+              données.
+            </p>
+            <p>
+              J'ai étudié l'informatique à la Toronto Metropolitan University
+              (B.Sc. 2024, liste d'honneur du doyen).
+            </p>
+          </details>
+        </section>
 
-      <section>
-        <h2>Projects</h2>
-        <ul class="entries">
-          <li>
-            <a class="entry-title" href="moat-finder.html">Moat Finder: a Buffett-style stock screener</a><span class="tag">In progress</span>
-            <span class="entry-desc">Screens the S&amp;P 500 and S&amp;P/TSX Composite and scores each stock against Buffett's principles. It shows the top 10 per sector with plain-English explanations.</span>
-            <span class="entry-meta">Python · Streamlit · SEC EDGAR · <a href="https://github.com/Idris-Ayinde/moat-finder">GitHub</a></span>
-          </li>
-          <li>
-            <span class="entry-title">GAIA: SRE automation platform</span>
-            <span class="entry-desc">Automated Windows system remediation, IIS certificate renewals, and service account password rotations at RBC, substantially reducing manual SRE workload across teams.</span>
-            <span class="entry-meta">Royal Bank of Canada · 2024–2025</span>
-          </li>
-          <li>
-            <span class="entry-title">Medical records analysis: clustering and association rule mining</span>
-            <span class="entry-desc">Used Apriori and K-means on large medical record datasets. The analysis found a clear relationship between patient age and cholesterol levels.</span>
-            <span class="entry-meta">Python · 2022</span>
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>Projets</h2>
+          <ul class="entries">
+            <li>
+              <a class="entry-title" href="moat-finder.html">Moat Finder&nbsp;: un outil de sélection d'actions inspiré de Buffett</a><span class="tag">En cours</span>
+              <span class="entry-desc">Analyse le S&amp;P 500 et l'indice composé S&amp;P/TSX et note chaque action selon les principes de Buffett. Affiche les 10 meilleures par secteur, avec des explications simples (en anglais).</span>
+              <span class="entry-meta">Python · Streamlit · SEC EDGAR · <a href="https://github.com/Idris-Ayinde/moat-finder">GitHub</a></span>
+            </li>
+            <li>
+              <span class="entry-title">GAIA&nbsp;: plateforme d'automatisation SRE</span>
+              <span class="entry-desc">Contribution à la conception et au développement de cette plateforme chez RBC. Elle automatise la remédiation des systèmes Windows, le renouvellement des certificats IIS et la rotation des mots de passe des comptes de service, réduisant considérablement la charge de travail SRE manuelle de plusieurs équipes.</span>
+              <span class="entry-meta">Banque Royale du Canada · 2024–2025</span>
+            </li>
+            <li>
+              <span class="entry-title">Analyse de dossiers médicaux&nbsp;: partitionnement et règles d'association</span>
+              <span class="entry-desc">Application d'Apriori et des k-moyennes à de grands jeux de données médicales, révélant un lien net entre l'âge des patients et leur taux de cholestérol.</span>
+              <span class="entry-meta">Python · 2022</span>
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>Experience</h2>
-        <ul class="entries">
-          <li>
-            <span class="entry-title">Senior Data Engineer, Royal Bank of Canada</span>
-            <span class="entry-meta">May 2024 – Nov. 2025</span>
-          </li>
-          <li>
-            <span class="entry-title">Data Engineer Intern, Royal Bank of Canada</span>
-            <span class="entry-meta">Jan. 2023 – Aug. 2023</span>
-          </li>
-          <li>
-            <span class="entry-title">Technical Systems Analyst Intern, Royal Bank of Canada</span>
-            <span class="entry-meta">May 2022 – Dec. 2022</span>
-          </li>
-        </ul>
-        <p style="margin-top: 20px;"><a href="experience.html">Full experience and skills →</a></p>
-      </section>
+        <section>
+          <h2>Expérience</h2>
+          <ul class="entries">
+            <li>
+              <span class="entry-title">Ingénieur de données principal, Banque Royale du Canada</span>
+              <span class="entry-meta">mai 2024 – nov. 2025</span>
+            </li>
+            <li>
+              <span class="entry-title">Stagiaire en ingénierie des données, Banque Royale du Canada</span>
+              <span class="entry-meta">janv. 2023 – août 2023</span>
+            </li>
+            <li>
+              <span class="entry-title">Stagiaire analyste en systèmes techniques, Banque Royale du Canada</span>
+              <span class="entry-meta">mai 2022 – déc. 2022</span>
+            </li>
+          </ul>
+          <p style="margin-top: 20px;"><a href="experience.html">Expérience complète et compétences →</a></p>
+        </section>
 
-      <section>
-        <h2>Education</h2>
-        <ul class="entries">
-          <li>
-            <span class="entry-title">B.Sc. Computer Science, Toronto Metropolitan University</span>
-            <span class="entry-meta">2024 · GPA 3.87/4.33 · Dean's List</span>
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>Formation</h2>
+          <ul class="entries">
+            <li>
+              <span class="entry-title">B.Sc. en informatique, Toronto Metropolitan University</span>
+              <span class="entry-meta">2024 · Moyenne 3,87/4,33 · Liste d'honneur du doyen</span>
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>Elsewhere</h2>
-        <ul class="links">
-          <li><a href="https://github.com/Idris-Ayinde">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/ru-idris-ayinde/">LinkedIn</a></li>
-        </ul>
-      </section>
+        <section>
+          <h2>Ailleurs</h2>
+          <ul class="links">
+            <li><a href="https://github.com/Idris-Ayinde">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/ru-idris-ayinde/">LinkedIn</a></li>
+          </ul>
+        </section>
+      </div>
     </main>
 
     <footer>© 2026 Idris Ayinde</footer>
   </div>
+
+  <script>
+    // Alternate the status line between French and English with a typing effect.
+    (function () {
+      var el = document.getElementById("status-text");
+      var phrases = [
+        { lang: "fr", text: "en train de jouer avec les LLM et les réseaux de neurones artificiels" },
+        { lang: "en", text: "playing with LLMs and artificial neural networks" }
+      ];
+      var HOLD = 4000, DELETE_SPEED = 20, TYPE_SPEED = 45;
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var i = 0;
+
+      function next() {
+        i = (i + 1) % phrases.length;
+        var phrase = phrases[i];
+
+        if (reduceMotion) {
+          el.lang = phrase.lang;
+          el.textContent = phrase.text;
+          setTimeout(next, HOLD);
+          return;
+        }
+
+        (function erase() {
+          if (el.textContent.length > 0) {
+            el.textContent = el.textContent.slice(0, -1);
+            setTimeout(erase, DELETE_SPEED);
+            return;
+          }
+          el.lang = phrase.lang;
+          var n = 0;
+          (function type() {
+            el.textContent = phrase.text.slice(0, ++n);
+            setTimeout(n < phrase.text.length ? type : next, n < phrase.text.length ? TYPE_SPEED : HOLD);
+          })();
+        })();
+      }
+
+      setTimeout(next, HOLD);
+    })();
+  </script>
 </body>
 </html>

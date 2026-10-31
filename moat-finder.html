@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-en="Moat Finder · Idris Ayinde" data-title-fr="Moat Finder · Idris Ayinde">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,7 @@
   <meta name="description" content="Moat Finder screens the S&P 500 and TSX against Warren Buffett's investing principles and explains every pick in plain English.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232f5d50'/><text x='50' y='67' font-family='Georgia,serif' font-size='52' text-anchor='middle' fill='%23fbf9f4'>IA</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <script src="lang.js"></script>
 </head>
 <body>
   <div class="page">
@@ -14,106 +15,213 @@
       <a class="name" href="index.html">Idris Ayinde</a>
       <nav>
         <a href="moat-finder.html" aria-current="page">Moat Finder</a>
-        <a href="experience.html">Experience</a>
+        <a href="experience.html"><span data-lang="en">Experience</span><span data-lang="fr">Expérience</span></a>
+        <button class="lang-toggle" type="button" hidden>FR</button>
       </nav>
     </header>
 
     <main class="article">
-      <h1>Moat Finder</h1>
-      <div class="article-meta">
-        A Buffett-style stock screener for the USA and Canada · In progress ·
-        <a href="https://github.com/Idris-Ayinde/moat-finder">Source on GitHub</a>
+      <!-- English -->
+      <div data-lang="en">
+        <h1>Moat Finder</h1>
+        <div class="article-meta">
+          A Buffett-style stock screener for the USA and Canada · In progress ·
+          <a href="https://github.com/Idris-Ayinde/moat-finder">Source on GitHub</a>
+        </div>
+
+        <p>
+          Warren Buffett's approach to picking stocks is easy to say and hard to
+          do at scale. He looks for businesses with a durable competitive
+          advantage, a conservative balance sheet, pricing power, and predictable
+          earnings, and he buys them only when the price leaves a margin of
+          safety. Moat Finder applies those rules to every company in the
+          <strong>S&amp;P 500</strong> and the <strong>S&amp;P/TSX
+          Composite</strong>. It scores each one from 0 to 100 and shows the
+          <strong>top 10 in each sector for each country</strong>.
+        </p>
+        <p>
+          I wanted a screener that explains its picks instead of just ranking
+          them. Each pick has a "See why" view that says in plain English which of
+          Buffett's rules the company meets and which it misses. The view also
+          shows up to ten years of financial history and how the estimated value
+          was calculated.
+        </p>
+
+        <h2>What it does</h2>
+        <ul>
+          <li><strong>Dashboard.</strong> Each pick is shown as a card with a score badge, the price next to the estimated value, a cheap/fair/expensive label, and key ratios. A sortable table view is also available.</li>
+          <li><strong>Detail view.</strong> Shows the reasoning behind each score, the financial history, the valuation, and links to Yahoo Finance, Google Finance, and SEC filings.</li>
+          <li><strong>Ask Moat Finder.</strong> A built-in chat assistant that runs on rules, with no AI model or API keys. It recognizes tickers and company names and handles questions like "Compare AAPL and MSFT," "Top 5 cheap tech stocks in the USA," "Low debt utilities," or "What is ROE?". It answers from the screen results.</li>
+          <li><strong>Guide.</strong> Explains every term used in the app. The same glossary feeds the tooltips and the chat.</li>
+          <li><strong>Light and dark themes.</strong> The theme follows your system setting, and a switch lets you override it.</li>
+        </ul>
+
+        <h2>How a stock is scored</h2>
+        <table>
+          <thead>
+            <tr><th>Principle</th><th>Criterion</th><th class="num">Weight</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Durable advantage</td><td>Average ROE ≥ 15%, and ≥ 15% consistently</td><td class="num">12 + 8</td></tr>
+            <tr><td>Conservative balance sheet</td><td>Debt/equity ≤ 0.5 (≤ 1.0 for utilities and real estate; ROA for financials)</td><td class="num">15</td></tr>
+            <tr><td>Pricing power</td><td>Net margin ≥ 15% (3-year average)</td><td class="num">14</td></tr>
+            <tr><td>Predictable earnings</td><td>Profitable every year, growing, few down years</td><td class="num">6 + 5 + 4</td></tr>
+            <tr><td>Owner earnings</td><td>Positive and growing free cash flow</td><td class="num">6 + 5</td></tr>
+            <tr><td>Margin of safety</td><td>Price vs. DCF intrinsic value, P/E</td><td class="num">17 + 8</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Intrinsic value comes from a 10-year discounted cash flow model. It
+          starts from three-year average free cash flow (net income for
+          financials). That figure grows at the lower of historical earnings
+          growth and FCF growth, capped at 12%, then fades to 2.5% and is
+          discounted at 10%. If data for a criterion is missing, the criterion is
+          skipped and the other weights are rescaled. A stock needs at least
+          three years of history and 60% data coverage to be ranked.
+        </p>
+
+        <h2>Where the data comes from</h2>
+        <p>
+          No single free source is complete or always right, so Moat Finder
+          combines several. Prices and P/E ratios use the <em>median</em> across
+          sources, and any disagreements between them appear as warnings on the
+          stock.
+        </p>
+        <table>
+          <thead>
+            <tr><th>Source</th><th>Used for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Yahoo Finance</td><td>Quotes, ratios, about 4 years of statements</td></tr>
+            <tr><td>SEC EDGAR</td><td>10+ years of official 10-K figures via the XBRL API (US)</td></tr>
+            <tr><td>Google Finance</td><td>Price and P/E cross-check</td></tr>
+            <tr><td>Finviz</td><td>Price, P/E, ROE, D/E, and margin cross-check (US)</td></tr>
+            <tr><td>Financial Modeling Prep</td><td>Fills gaps in history, mostly for Canada (optional)</td></tr>
+            <tr><td>Wikipedia</td><td>Index constituents and GICS sectors</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Responses are cached locally, with quotes kept for a day and
+          fundamentals for a week. Requests are rate-limited so each site isn't
+          overloaded. A full first run takes about 10 to 20 minutes, and later
+          runs are fast. The screen can be refreshed from the dashboard or from
+          the command line (<code>python -m buffett</code>), which makes it easy
+          to schedule with cron.
+        </p>
+
+        <h2>Built with</h2>
+        <p>Python, Streamlit, pandas, yfinance, SEC EDGAR XBRL, pytest.</p>
+
+        <p style="margin-top: 32px;">
+          <a href="https://github.com/Idris-Ayinde/moat-finder">View the code on GitHub →</a>
+        </p>
       </div>
 
-      <p>
-        Warren Buffett's approach to picking stocks is easy to say and hard to
-        do at scale. He looks for businesses with a durable competitive
-        advantage, a conservative balance sheet, pricing power, and predictable
-        earnings, and he buys them only when the price leaves a margin of
-        safety. Moat Finder applies those rules to every company in the
-        <strong>S&amp;P 500</strong> and the <strong>S&amp;P/TSX
-        Composite</strong>. It scores each one from 0 to 100 and shows the
-        <strong>top 10 in each sector for each country</strong>.
-      </p>
-      <p>
-        I wanted a screener that explains its picks instead of just ranking
-        them. Each pick has a "See why" view that says in plain English which of
-        Buffett's rules the company meets and which it misses. The view also
-        shows up to ten years of financial history and how the estimated value
-        was calculated.
-      </p>
+      <!-- Français -->
+      <div data-lang="fr">
+        <h1>Moat Finder</h1>
+        <div class="article-meta">
+          Un outil de sélection d'actions inspiré de Buffett pour les États-Unis et le Canada · En cours ·
+          <a href="https://github.com/Idris-Ayinde/moat-finder">Code source sur GitHub</a>
+        </div>
 
-      <h2>What it does</h2>
-      <ul>
-        <li><strong>Dashboard.</strong> Each pick is shown as a card with a score badge, the price next to the estimated value, a cheap/fair/expensive label, and key ratios. A sortable table view is also available.</li>
-        <li><strong>Detail view.</strong> Shows the reasoning behind each score, the financial history, the valuation, and links to Yahoo Finance, Google Finance, and SEC filings.</li>
-        <li><strong>Ask Moat Finder.</strong> A built-in chat assistant that runs on rules, with no AI model or API keys. It recognizes tickers and company names and handles questions like "Compare AAPL and MSFT," "Top 5 cheap tech stocks in the USA," "Low debt utilities," or "What is ROE?". It answers from the screen results.</li>
-        <li><strong>Guide.</strong> Explains every term used in the app. The same glossary feeds the tooltips and the chat.</li>
-        <li><strong>Light and dark themes.</strong> The theme follows your system setting, and a switch lets you override it.</li>
-      </ul>
+        <p>
+          La méthode de Warren Buffett pour choisir des actions est simple à
+          énoncer, mais difficile à appliquer à grande échelle. Il recherche des
+          entreprises dotées d'un avantage concurrentiel durable, d'un bilan
+          prudent, d'un pouvoir de fixation des prix et de bénéfices prévisibles,
+          et il ne les achète que lorsque le prix offre une marge de sécurité.
+          Moat Finder applique ces règles à toutes les sociétés du
+          <strong>S&amp;P 500</strong> et de l'<strong>indice composé
+          S&amp;P/TSX</strong>. Il attribue à chacune une note de 0 à 100 et
+          affiche <strong>les 10 meilleures de chaque secteur, pour chaque
+          pays</strong>.
+        </p>
+        <p>
+          Je voulais un outil qui explique ses choix au lieu de simplement les
+          classer. Chaque sélection comporte une vue « See why » (Voir pourquoi)
+          qui indique en langage clair quelles règles de Buffett l'entreprise
+          respecte et lesquelles elle ne respecte pas. Cette vue présente aussi
+          jusqu'à dix ans d'historique financier et la méthode utilisée pour
+          estimer la valeur.
+        </p>
 
-      <h2>How a stock is scored</h2>
-      <table>
-        <thead>
-          <tr><th>Principle</th><th>Criterion</th><th class="num">Weight</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Durable advantage</td><td>Average ROE ≥ 15%, and ≥ 15% consistently</td><td class="num">12 + 8</td></tr>
-          <tr><td>Conservative balance sheet</td><td>Debt/equity ≤ 0.5 (≤ 1.0 for utilities and real estate; ROA for financials)</td><td class="num">15</td></tr>
-          <tr><td>Pricing power</td><td>Net margin ≥ 15% (3-year average)</td><td class="num">14</td></tr>
-          <tr><td>Predictable earnings</td><td>Profitable every year, growing, few down years</td><td class="num">6 + 5 + 4</td></tr>
-          <tr><td>Owner earnings</td><td>Positive and growing free cash flow</td><td class="num">6 + 5</td></tr>
-          <tr><td>Margin of safety</td><td>Price vs. DCF intrinsic value, P/E</td><td class="num">17 + 8</td></tr>
-        </tbody>
-      </table>
-      <p>
-        Intrinsic value comes from a 10-year discounted cash flow model. It
-        starts from three-year average free cash flow (net income for
-        financials). That figure grows at the lower of historical earnings
-        growth and FCF growth, capped at 12%, then fades to 2.5% and is
-        discounted at 10%. If data for a criterion is missing, the criterion is
-        skipped and the other weights are rescaled. A stock needs at least
-        three years of history and 60% data coverage to be ranked.
-      </p>
+        <h2>Fonctionnalités</h2>
+        <ul>
+          <li><strong>Tableau de bord.</strong> Chaque sélection s'affiche sous forme de carte avec sa note, le prix comparé à la valeur estimée, une étiquette bon marché/juste/cher et les ratios clés. Une vue en tableau triable est aussi offerte.</li>
+          <li><strong>Vue détaillée.</strong> Présente le raisonnement derrière chaque note, l'historique financier, l'évaluation et des liens vers Yahoo Finance, Google Finance et les documents déposés auprès de la SEC.</li>
+          <li><strong>Ask Moat Finder.</strong> Un assistant de clavardage intégré qui fonctionne à partir de règles, sans modèle d'IA ni clé d'API. Il reconnaît les symboles boursiers et les noms d'entreprises, et répond à partir des résultats de l'analyse à des questions en anglais comme « Compare AAPL and MSFT », « Top 5 cheap tech stocks in the USA », « Low debt utilities » ou « What is ROE? ».</li>
+          <li><strong>Guide.</strong> Explique chaque terme utilisé dans l'application. Le même glossaire alimente les infobulles et l'assistant.</li>
+          <li><strong>Thèmes clair et sombre.</strong> Le thème suit le réglage de votre système, et un interrupteur permet de le changer.</li>
+        </ul>
 
-      <h2>Where the data comes from</h2>
-      <p>
-        No single free source is complete or always right, so Moat Finder
-        combines several. Prices and P/E ratios use the <em>median</em> across
-        sources, and any disagreements between them appear as warnings on the
-        stock.
-      </p>
-      <table>
-        <thead>
-          <tr><th>Source</th><th>Used for</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Yahoo Finance</td><td>Quotes, ratios, about 4 years of statements</td></tr>
-          <tr><td>SEC EDGAR</td><td>10+ years of official 10-K figures via the XBRL API (US)</td></tr>
-          <tr><td>Google Finance</td><td>Price and P/E cross-check</td></tr>
-          <tr><td>Finviz</td><td>Price, P/E, ROE, D/E, and margin cross-check (US)</td></tr>
-          <tr><td>Financial Modeling Prep</td><td>Fills gaps in history, mostly for Canada (optional)</td></tr>
-          <tr><td>Wikipedia</td><td>Index constituents and GICS sectors</td></tr>
-        </tbody>
-      </table>
-      <p>
-        Responses are cached locally, with quotes kept for a day and
-        fundamentals for a week. Requests are rate-limited so each site isn't
-        overloaded. A full first run takes about 10 to 20 minutes, and later
-        runs are fast. The screen can be refreshed from the dashboard or from
-        the command line (<code>python -m buffett</code>), which makes it easy
-        to schedule with cron.
-      </p>
+        <h2>Comment une action est notée</h2>
+        <table>
+          <thead>
+            <tr><th>Principe</th><th>Critère</th><th class="num">Pondération</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Avantage durable</td><td>RCP moyen ≥ 15 %, et ≥ 15 % de façon constante</td><td class="num">12 + 8</td></tr>
+            <tr><td>Bilan prudent</td><td>Ratio dette/capitaux propres ≤ 0,5 (≤ 1,0 pour les services publics et l'immobilier; rendement de l'actif pour les sociétés financières)</td><td class="num">15</td></tr>
+            <tr><td>Pouvoir de fixation des prix</td><td>Marge nette ≥ 15 % (moyenne sur 3 ans)</td><td class="num">14</td></tr>
+            <tr><td>Bénéfices prévisibles</td><td>Rentable chaque année, en croissance, peu d'années de recul</td><td class="num">6 + 5 + 4</td></tr>
+            <tr><td>Bénéfices du propriétaire</td><td>Flux de trésorerie disponible positif et en croissance</td><td class="num">6 + 5</td></tr>
+            <tr><td>Marge de sécurité</td><td>Prix par rapport à la valeur intrinsèque (FTA), ratio cours/bénéfice</td><td class="num">17 + 8</td></tr>
+          </tbody>
+        </table>
+        <p>
+          La valeur intrinsèque provient d'un modèle de flux de trésorerie
+          actualisés (FTA) sur 10 ans. Il part du flux de trésorerie disponible
+          moyen sur trois ans (le bénéfice net pour les sociétés financières).
+          Ce montant croît au plus faible des deux taux suivants : la croissance
+          historique des bénéfices ou celle du flux de trésorerie disponible,
+          avec un plafond de 12 %. Il ralentit ensuite jusqu'à 2,5 % et est
+          actualisé à 10 %. Si les données d'un critère manquent, celui-ci est
+          ignoré et les autres pondérations sont recalculées. Une action doit
+          avoir au moins trois ans d'historique et 60 % de couverture des
+          données pour être classée.
+        </p>
 
-      <h2>Built with</h2>
-      <p>Python, Streamlit, pandas, yfinance, SEC EDGAR XBRL, pytest.</p>
+        <h2>D'où viennent les données</h2>
+        <p>
+          Aucune source gratuite n'est complète ni toujours exacte, alors Moat
+          Finder en combine plusieurs. Les prix et les ratios cours/bénéfice
+          utilisent la <em>médiane</em> des sources, et tout écart entre elles
+          s'affiche sous forme d'avertissement sur l'action.
+        </p>
+        <table>
+          <thead>
+            <tr><th>Source</th><th>Utilisation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Yahoo Finance</td><td>Cours, ratios, environ 4 ans d'états financiers</td></tr>
+            <tr><td>SEC EDGAR</td><td>Plus de 10 ans de données officielles des formulaires 10-K, via l'API XBRL (É.-U.)</td></tr>
+            <tr><td>Google Finance</td><td>Vérification du prix et du ratio cours/bénéfice</td></tr>
+            <tr><td>Finviz</td><td>Vérification du prix, du ratio cours/bénéfice, du RCP, du ratio d'endettement et de la marge (É.-U.)</td></tr>
+            <tr><td>Financial Modeling Prep</td><td>Comble les lacunes de l'historique, surtout pour le Canada (facultatif)</td></tr>
+            <tr><td>Wikipédia</td><td>Composition des indices et secteurs GICS</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Les réponses sont mises en cache localement : les cours pendant une
+          journée et les données fondamentales pendant une semaine. Le nombre de
+          requêtes est limité pour ne surcharger aucun site. Une première analyse
+          complète prend de 10 à 20 minutes, et les suivantes sont rapides.
+          L'analyse peut être relancée depuis le tableau de bord ou en ligne de
+          commande (<code>python -m buffett</code>), ce qui facilite sa
+          planification avec cron.
+        </p>
 
-      <p style="margin-top: 32px;">
-        <a href="https://github.com/Idris-Ayinde/moat-finder">View the code on GitHub →</a>
-      </p>
+        <h2>Technologies</h2>
+        <p>Python, Streamlit, pandas, yfinance, SEC EDGAR XBRL, pytest.</p>
+
+        <p style="margin-top: 32px;">
+          <a href="https://github.com/Idris-Ayinde/moat-finder">Voir le code sur GitHub →</a>
+        </p>
+      </div>
     </main>
 
-    <footer>© 2026 Idris Ayinde · <a href="index.html">Home</a></footer>
+    <footer>© 2026 Idris Ayinde · <a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></footer>
   </div>
 </body>
 </html>
